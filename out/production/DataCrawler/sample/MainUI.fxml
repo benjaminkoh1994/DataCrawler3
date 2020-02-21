@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770" prefWidth="1500" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainUIController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="500.0" styleClass="sidebar" stylesheets="@stylesheet.css">
+         <children>
+            <ImageView fitHeight="176.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/weblogo.png" />
+               </image>
+            </ImageView>
+            <Label text="Kerawl" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="20.0" />
+               </font>
+            </Label>
+         </children></VBox>
+      <Pane layoutX="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="500.0" styleClass="sidebarMid" stylesheets="@stylesheet.css">
+         <children>
+            
+            <JFXTextArea fx:id="inputTextArea" focusColor="WHITE" layoutX="215.0" layoutY="346.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="20" prefHeight="35.0" prefWidth="100.0" unFocusColor="WHITE" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <Label layoutX="216.0" layoutY="211.0" text="Welcome" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="258.0" text="Enter a keyword to start crawling" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="194.0" layoutY="455.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#changeScene" prefHeight="40.0" prefWidth="150.0" styleClass="fbBtn" text="Crawl" />
+            <Label fx:id="warningLabel" layoutX="227.0" layoutY="398.0" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="1000.0" prefHeight="770.0" prefWidth="500.0" styleClass="sidebarRight" stylesheets="@stylesheet.css">
+         <children>
+            <Label layoutX="200.0" layoutY="250.0" text="Developed by:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="280.0" text="Sadiq">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="400.0" text="Chang Hong">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="370.0" text="Benjamin">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="340.0" text="Sheng Fong">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="310.0" text="Xiang Bin">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="94.0" fitWidth="90.0" layoutX="374.0" layoutY="657.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/sitlogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
