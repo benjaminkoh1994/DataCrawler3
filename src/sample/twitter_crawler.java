@@ -31,13 +31,13 @@ public class twitter_crawler extends mainCrawler{
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 
             for (Status status : result.getTweets()) {
-                String username = status.getUser().getScreenName();
-                String tweet = status.getText();
+                super.author = status.getUser().getScreenName();
+                super.post = status.getText();
                 String dateStr = sdf.format(status.getCreatedAt());
 
-                Date date = sdf.parse(dateStr);
+                super.date = sdf.parse(dateStr);
 
-                saveToTDb(status.getUser().getScreenName(),status.getText(), dateStr ,status.getUser().getLocation(),status.getFavoriteCount(),status.getRetweetCount());
+                saveToTDb(getAuthor(),getPost(), dateStr ,status.getUser().getLocation(),status.getFavoriteCount(),status.getRetweetCount());
             }
         }catch (TwitterException te) {
             System.out.println(te);
@@ -48,22 +48,22 @@ public class twitter_crawler extends mainCrawler{
 
     @Override
     public String getAuthor() {
-        return null;
+        return super.author;
     }
 
     @Override
     public String getPost() {
-        return null;
+        return super.post;
     }
 
     @Override
     public String getURL() {
-        return null;
+        return super.url;
     }
 
     @Override
     public Date getDate() {
-        return null;
+        return super.date;
     }
 
     public static void saveToTDb(String author, String tweet, String date, String location, int favCount, int rtCount) {
