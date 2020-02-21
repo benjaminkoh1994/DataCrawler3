@@ -17,7 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
         Scene startScene = new Scene(root, 1500, 770);
         //second scene should be width 1500, height 770
-        primaryStage.setTitle("Kerawl");
+        primaryStage.setTitle("Crawl");
         primaryStage.setScene(startScene);
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("/sample/img/icon.png"));
