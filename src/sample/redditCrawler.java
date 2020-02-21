@@ -24,19 +24,21 @@ public class redditCrawler extends mainCrawler {
    }// redditCrawler
 
    @Override
+   // To start the Crawling for Reddit Pages
    public void startCrawler() {
+      // Declaring UserAgent for OAuth for authentication
       UserAgent userAgent = new UserAgent("desktop", "com.example.script", "v0.1", "mattbdean");
-
+      // Credentials for reddit APi
       Credentials credentials = Credentials.script("firezxc4901", "1qwer$#@!",
               "L1B44_Tq3SyQYA", "jfG6SFE0h6Mf5JIMQmke6FmcT6M");
 
-      // This is what really sends HTTP requests
+      // Sends HTTP Requests over to Reddit
       NetworkAdapter adapter = new OkHttpNetworkAdapter(userAgent);
-
+      // Create a Reddit Client to crawl information out from Reddit
       RedditClient reddit = OAuthHelper.automatic(adapter, credentials);
 
 //       To Crawl SUBREDDIT PAGES
-      DefaultPaginator<Submission> sg = reddit.subreddit(userKeyword).posts().limit(15).timePeriod(TimePeriod.YEAR).sorting(SubredditSort.NEW).build();
+      DefaultPaginator<Submission> sg = reddit.subreddit(userKeyword).posts().limit(100).timePeriod(TimePeriod.YEAR).sorting(SubredditSort.NEW).build();
       SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
       try{
          for (Submission s : sg.next()) {
@@ -90,17 +92,18 @@ public class redditCrawler extends mainCrawler {
       return super.date;
    }
 
-
+   // Storing Reddit Posts onto SQLite
    public void saveToRDb(String post, String author, String date, String ID, String postUrl, int commCount, int score) {
 
       try {
+         // Creating connection to SQLite
          Connection conn = DBConnector.getConnection();
-
+         // Insert Statement into DBMS
          String insertstr = "INSERT INTO reddit ('postTitle','author','postDate','ID','postUrl', 'commCount','score') VALUES (?,?,?,?,?,?,?)";
 
          PreparedStatement insertstmt = conn.prepareStatement(insertstr);
 
-
+            // Querying the inputs according to column title
 			insertstmt.setString(1,post);
 			insertstmt.setString(2,author);
 			insertstmt.setString(3,date);
@@ -108,15 +111,17 @@ public class redditCrawler extends mainCrawler {
 			insertstmt.setString(5,postUrl);
 			insertstmt.setInt(6,commCount);
 			insertstmt.setInt(7,score);
+		 // executeUpdate() is for INSERT, UPDATE and DELETE statement
+         // as executeUpdate() will return a value to determine successful or failure
+         // executeQuery() is for SELECT statement
          insertstmt.executeUpdate();
 
-         // executeUpdate() for INSERT,UPDATE, DELETE
-         // executeQuery() for SELECT
-
       }catch (SQLException sqle){
+         // for Debugging
 //         System.out.println(sqle);
       }
    }
+   // method to create connection to DBMS to retrieve data
    public void displayDataRDB() {
       try {
          Connection conn = DBConnector.getConnection();
@@ -126,11 +131,7 @@ public class redditCrawler extends mainCrawler {
          PreparedStatement selstmt = conn.prepareStatement(selectStr);
 
          ResultSet rs = selstmt.executeQuery();
-         while (rs.next()) {
-            System.out.println(rs.getString("postTitle"));
-         }
-         // executeUpdate() for INSERT,UPDATE, DELETE
-         // executeQuery() for SELECT
+
       }catch (Exception e){
          System.out.println(e);
       }

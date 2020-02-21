@@ -30,7 +30,6 @@ public class twitter_crawler extends mainCrawler{
             QueryResult result = twitter.search(query);
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
             for (Status status : result.getTweets()) {
-//                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText() + " " + status.getCreatedAt() + " " + status.getUser().getLocation() + '\n');
                 String username = status.getUser().getScreenName();
                 String tweet = status.getText();
                 String d = sdf.format(status.getCreatedAt());
@@ -67,12 +66,12 @@ public class twitter_crawler extends mainCrawler{
 
     public static void saveToTDb(String author, String tweet, String date, String location, int favCount, int rtCount) {
         try {
+            // retrieving connection from DBConnector class
             Connection conn = DBConnector.getConnection();
 
             String insertstr = "INSERT INTO twitter ('author','tweet','date','location','favCount', 'rtCount') VALUES (?,?,?,?,?,?)";
 
             PreparedStatement insertstmt = conn.prepareStatement(insertstr);
-
 
             insertstmt.setString(1,"@"+author);
             insertstmt.setString(2,tweet);
@@ -80,10 +79,10 @@ public class twitter_crawler extends mainCrawler{
             insertstmt.setString(4,location);
             insertstmt.setInt(5,favCount);
             insertstmt.setInt(6,rtCount);
-            insertstmt.executeUpdate();
 
             // executeUpdate() for INSERT,UPDATE, DELETE
             // executeQuery() for SELECT
+            insertstmt.executeUpdate();
 
         }catch (SQLException sqle){
             System.out.println(sqle);
@@ -99,11 +98,7 @@ public class twitter_crawler extends mainCrawler{
             PreparedStatement selstmt = conn.prepareStatement(selectStr);
 
             ResultSet rs = selstmt.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getString("postTitle"));
-            }
-            // executeUpdate() for INSERT,UPDATE, DELETE
-            // executeQuery() for SELECT
+
         }catch (Exception e){
             System.out.println(e);
         }
