@@ -29,13 +29,15 @@ public class twitter_crawler extends mainCrawler{
             query.setCount(100);
             QueryResult result = twitter.search(query);
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+
             for (Status status : result.getTweets()) {
                 String username = status.getUser().getScreenName();
                 String tweet = status.getText();
-                String d = sdf.format(status.getCreatedAt());
-                Date date = sdf.parse(d);
+                String dateStr = sdf.format(status.getCreatedAt());
 
-                saveToTDb(status.getUser().getScreenName(),status.getText(),date.toString(),status.getUser().getLocation(),status.getFavoriteCount(),status.getRetweetCount());
+                Date date = sdf.parse(dateStr);
+
+                saveToTDb(status.getUser().getScreenName(),status.getText(), dateStr ,status.getUser().getLocation(),status.getFavoriteCount(),status.getRetweetCount());
             }
         }catch (TwitterException te) {
             System.out.println(te);
@@ -105,6 +107,9 @@ public class twitter_crawler extends mainCrawler{
     }
     @Override
     public void displayData() {
-
+        System.out.println("Title: "+ getPost());
+        System.out.println("Author: "+ getAuthor());
+        System.out.println("Date: "+ getDate());
+        System.out.println("Link: "+ getURL());
     }
 }

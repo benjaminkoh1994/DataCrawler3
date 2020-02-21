@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -13,9 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -42,6 +41,7 @@ public class DashboardUIController implements Initializable {
     private TableColumn<TwitterTable, String> col_author;
     @FXML
     private TableColumn<TwitterTable, String> col_tweet;
+
     @FXML
     private TableColumn<TwitterTable, String> col_date;
     @FXML
@@ -96,6 +96,10 @@ public class DashboardUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Sorting Columns
+        col_rt.setSortable(true);
+
         XYChart.Series<String,Integer> series = new XYChart.Series<>();
         XYChart.Series<String,Integer> rdtSeries = new XYChart.Series<>();
 
@@ -134,7 +138,7 @@ public class DashboardUIController implements Initializable {
                         rs.getString("tweet"),
                         rs.getString("date"),
                         rs.getString("location"),
-                        rs.getString("rtCount")
+                        rs.getInt("rtCount")
                 ));
             }
             //Populate table reddit
@@ -236,4 +240,8 @@ public class DashboardUIController implements Initializable {
         // 5. Add sorted (and filtered) data to the table.
         redditTable.setItems(sortedRedditData);
     }
+
+    public void onSort(SortEvent<TableView<RedditTable>> tableViewSortEvent) {
+
+    }// onSort
 }

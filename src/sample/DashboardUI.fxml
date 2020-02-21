@@ -62,7 +62,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="redditTable" layoutX="15.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0">
+                        <TableView fx:id="redditTable" layoutX="15.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" onSort="#onSort" prefWidth="900.0">
                           <columns>
                             <TableColumn fx:id="reddit_id" prefWidth="90.0" text="pid" />
                             <TableColumn fx:id="reddit_author" prefWidth="130.0" text="author" />

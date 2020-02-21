@@ -51,7 +51,7 @@ public class redditCrawler extends mainCrawler {
                super.url = s.getUrl();
                int score = s.getScore();
                int count = s.getCommentCount();
-               saveToRDb(super.post,super.author, dateStr, s.getId() ,s.getUrl(), s.getCommentCount(), s.getScore());
+               saveToRDb(super.post,super.author, dateStr, s.getId() ,super.url, s.getCommentCount(), s.getScore());
             }
          }
       }catch (ParseException pe) {

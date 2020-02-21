@@ -1,9 +1,10 @@
 package sample;
 
 public class TwitterTable {
-    String tid, author, tweet, date, location, rtCount;
+    String tid, author, tweet, date, location;
+    int rtCount;
 
-    public TwitterTable(String tid, String author, String tweet, String date, String location, String rtCount) {
+    public TwitterTable(String tid, String author, String tweet, String date, String location, int rtCount) {
         this.tid = tid;
         this.author = author;
         this.tweet = tweet;
@@ -52,11 +53,11 @@ public class TwitterTable {
         this.location = location;
     }
 
-    public String getRtCount() {
+    public int getRtCount() {
         return rtCount;
     }
 
-    public void setRtCount(String rtCount) {
+    public void setRtCount(int rtCount) {
         this.rtCount = rtCount;
     }
 
