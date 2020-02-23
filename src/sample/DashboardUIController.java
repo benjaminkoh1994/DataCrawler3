@@ -260,13 +260,13 @@ public class DashboardUIController implements Initializable {
             String rdtNeu = df.format(rdtNeutralPercent);
 
             //Populate Pie Chart
-            ObservableList<PieChart.Data> tdtPieChartData = FXCollections.observableArrayList(
+            ObservableList<PieChart.Data> rdtPieChartData = FXCollections.observableArrayList(
                     new PieChart.Data("Negative: " + rdtNeg + "%",Double.parseDouble(rdtNeg)),
                     new PieChart.Data("Positive: " + rdtPos + "%",Double.parseDouble(rdtPos)),
                     new PieChart.Data("Neutral: " + rdtNeu + "%",Double.parseDouble(rdtNeu))
             );
             //Pie Chart Settings
-            rdtPieChart.setData(tdtPieChartData);
+            rdtPieChart.setData(rdtPieChartData);
             rdtPieChart.setClockwise(true);
             rdtPieChart.setLabelsVisible(true);
 

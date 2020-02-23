@@ -12,6 +12,7 @@ public class sentimentAnalyzer {
     int neutral = 0;
     int negative = 0;
     int veryNegative = 0;
+
     public sentimentAnalyzer(String text){
 
         StanfordCoreNLP stanfordCoreNLP = Pipeline.getPipeline();
@@ -39,13 +40,15 @@ public class sentimentAnalyzer {
             else if(sentiment.equals("Very Negative")){
                 setVeryNegative();
             }
+            /*
             else{
                 System.out.println("Error");
                 break;
-            }
-            System.out.println(sentiment + "\t" + sentence);
+            }*/
+            //System.out.println(sentiment + "\t" + sentence);
         }
     }
+
     public void setVeryPositive(){
         veryPositive ++;
     }
